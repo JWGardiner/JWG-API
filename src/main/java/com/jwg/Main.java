@@ -2,11 +2,11 @@ package com.jwg;
 
 /*
 This file is just here as an example; it is not required for this project to work
-The code on line 9 and 10 are important though for the logger.
+The code on line 15, 16, 17 and 19 are important though for the logger.
 The version must be X.X.X and the project name must be lowercase.
  */
 
-import com.jwg.jwgapi.errorHandler;
+
 import com.jwg.jwgapi.logger;
 
 import static com.jwg.jwgapi.parseVersion.versionInt;
@@ -19,6 +19,5 @@ public class Main {
         logger.StartLogger(logFile);
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
-
     }
 }
