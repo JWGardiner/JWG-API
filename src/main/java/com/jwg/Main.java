@@ -13,9 +13,10 @@ import static com.jwg.jwgapi.parseVersion.versionInt;
 public class Main {
     static String version = "0.0.1";
     static String project = "jwgapi";
+    static String logFile = "test.log";
     public static void main(String[] args) {
-        logger.StartLogger("test.log");
-        logger.log("test.log", versionInt(version), project, 0, "Hello, World!");
-        logger.log("test.log", versionInt(version), project, 0, "WEeeee");
+        logger.StartLogger(logFile);
+        logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
+        logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
     }
 }
