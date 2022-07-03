@@ -12,7 +12,7 @@ import com.jwg.jwgapi.logger;
 import static com.jwg.jwgapi.parseVersion.versionInt;
 
 public class Main {
-    static String version = "0.0.1";
+    static String version = "0.0.2";
     static String project = "jwgapi";
     static String logFile = "test.log";
     public static void main(String[] args) {
