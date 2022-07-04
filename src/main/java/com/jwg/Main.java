@@ -8,6 +8,10 @@ The version must be X.X.X and the project name must be lowercase.
 
 
 import com.jwg.jwgapi.logger;
+import com.jwg.jwgapi.swingUtils;
+import com.jwg.jwgapi.sysinfo;
+
+import javax.swing.*;
 
 import static com.jwg.jwgapi.parseVersion.versionInt;
 
@@ -19,5 +23,10 @@ public class Main {
         logger.StartLogger(logFile);
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
+        JFrame frame = new JFrame();
+        swingUtils.configureJframe(frame, 100, 100, 100, 100, true, true);
+        frame.setVisible(true);
+
+        System.getProperties().list(System.out);
     }
 }
