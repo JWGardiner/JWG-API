@@ -47,7 +47,6 @@ public class logger {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(log);
         System.out.println(logString);
     }
 }

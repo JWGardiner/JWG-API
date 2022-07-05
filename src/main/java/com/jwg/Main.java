@@ -7,6 +7,7 @@ The version must be X.X.X and the project name must be lowercase.
  */
 
 
+import com.jwg.jwgapi.cfgFileUtils;
 import com.jwg.jwgapi.logger;
 import com.jwg.jwgapi.swingUtils;
 import com.jwg.jwgapi.sysinfo;
@@ -23,5 +24,9 @@ public class Main {
         logger.StartLogger(logFile);
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
+
+        cfgFileUtils.addCFG("test","test.cfg","true");
+        cfgFileUtils.addCFG("test2","test.cfg","false");
+        System.out.println(cfgFileUtils.readCFG(1,"test.cfg"));
     }
 }
