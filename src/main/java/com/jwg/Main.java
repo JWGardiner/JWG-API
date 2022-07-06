@@ -14,6 +14,7 @@ import com.jwg.jwgapi.sysinfo;
 
 import javax.swing.*;
 
+import static com.jwg.jwgapi.FileChooserKt.fileChooser;
 import static com.jwg.jwgapi.parseVersion.versionInt;
 
 public class Main {
@@ -24,9 +25,6 @@ public class Main {
         logger.StartLogger(logFile);
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
-
-        cfgFileUtils.addCFG("test","test.cfg","true");
-        cfgFileUtils.addCFG("test2","test.cfg","false");
-        System.out.println(cfgFileUtils.readCFG(1,"test.cfg"));
+        fileChooser("/home/jwg/Projects", "Choose File");
     }
 }
