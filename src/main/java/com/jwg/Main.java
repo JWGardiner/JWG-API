@@ -18,13 +18,14 @@ import static com.jwg.jwgapi.FileChooserKt.fileChooser;
 import static com.jwg.jwgapi.parseVersion.versionInt;
 
 public class Main {
-    static String version = "0.0.3";
+    public static String version = "0.0.3";
     static String project = "jwgapi";
     static String logFile = "test.log";
     public static void main(String[] args) {
         logger.StartLogger(logFile);
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
-        fileChooser("/home/jwg/Projects", "Choose File");
+
+        fileChooser("/home/jwg/Projects/JWG-Minecraft-Launcher", "Choose File", true);
     }
 }

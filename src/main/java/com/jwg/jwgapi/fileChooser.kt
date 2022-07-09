@@ -1,58 +1,60 @@
 package com.jwg.jwgapi
 
-import java.io.IOException
-import java.nio.file.*
-import javax.swing.JButton
-import javax.swing.JFrame
-import javax.swing.JList
-import javax.swing.UIManager
+import java.io.File
+import javax.swing.*
 
+fun scanFiles(dir: File): Array<String?> {
+    val listOfFiles: Array<File> = dir.listFiles()!!
+    var j = 0
+    var k = 0
+    for (i in listOfFiles.indices) {
+        j += 1
+    }
+    val listOfFileNames = arrayOfNulls<String>(j)
+    while (k < j) {
+        listOfFileNames[k] = listOfFiles[k].name
+        k += 1
+    }
 
-fun scanFolder(folder: String): Array<String?> {
-    val folders = arrayOfNulls<String>(100000)
-    try {
-        Files
-            .newDirectoryStream(Paths.get(folder)).use { stream ->
-                var i = 0
-                for (path in stream) {
-                    folders[i] = path.toString()
-                    i += 1
+    return listOfFileNames
+}
+    fun fileChooser(startingDir: String, windowTitle: String, allowBack: Boolean): String {
+        println(File(startingDir).listFiles())
+        //Create the actual window
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
+        val model = DefaultListModel<String>()
+        val folderList = JList(model)
+        folderList.setListData(scanFiles(File(startingDir)))
+
+        val chosenFile = ""
+        var dir = startingDir
+        JFrame().also { window ->
+            window.title = windowTitle
+            window.setSize(750, 500)
+            window.isResizable = false
+            window.layout = null
+            window.setLocationRelativeTo(null)
+            if (allowBack) {
+                val back = JButton("Go Back")
+                window.add(back)
+                back.setBounds(9, 10, 135, 35)
+                back.addActionListener {
+                    dir += "/.."
+                    folderList.setListData(scanFiles(File(dir)))
+                    folderList.updateUI()
+
                 }
             }
-    } catch (e: IOException) {
-        throw RuntimeException(e)
-    }
-    return folders
-}
-
-fun fileChooser(startingDir: String, windowTitle: String): String {
-    //Create the actual window
-    var dir = startingDir
-    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
-    var folderList = JList(scanFolder(dir))
-    val back = JButton("Go Back")
-    val chosenFile = ""
-    JFrame().also { window ->
-        window.title = windowTitle
-        window.setSize(750, 500)
-        window.isResizable = false
-        window.layout = null
-        window.setLocationRelativeTo(null)
-
-        window.add(back)
-        window.add(folderList)
-
-        window.isVisible = true
-        back.addActionListener {
-            dir += "/.."
-            val lsDir = scanFolder(dir)
-            folderList.setListData(lsDir)
-            folderList.updateUI()
-            
+            window.add(folderList)
+            folderList.setBounds(10, 55, 280, 405)
+            window.isVisible = true
         }
-    }
-    back.setBounds(9, 10, 135, 35)
-    folderList.setBounds(10, 55, 280, 405)
 
-    return chosenFile;
-}
+        return chosenFile
+    }
+
+
+
+
+
+
