@@ -1,9 +1,12 @@
 package com.jwg.jwgapi;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+import java.util.Scanner;
 
 public class logger {
     public static void StartLogger(String logFile) {
@@ -11,7 +14,8 @@ public class logger {
         if (LogFile.exists()) {
             try {
                 Files.delete(Path.of(logFile));
-            } catch (IOException ignored) {
+            } catch (IOException x) {
+                System.err.println(x);
             }
         }
         try {
@@ -28,11 +32,11 @@ public class logger {
         if (severity >= 4) {
             severity = 4;
         }
-        String log;
+        String log = "";
         String logString = logSeverity[severity] + " (" + name + ", " + version + ") " + logMessage;
 
         try {
-            log = Files.readString(Paths.get(logFile));
+            log = new String(Files.readAllBytes(Paths.get(logFile)), StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

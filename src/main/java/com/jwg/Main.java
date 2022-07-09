@@ -12,14 +12,18 @@ import static com.jwg.jwgapi.FileChooserKt.fileChooser;
 import static com.jwg.jwgapi.parseVersion.versionInt;
 
 public class Main {
-    public static String version = "0.0.3";
+    static String version = "0.0.3";
     static String project = "jwgapi";
     static String logFile = "test.log";
     public static void main(String[] args) {
         logger.StartLogger(logFile);
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
+<<<<<<< HEAD
 
         fileChooser("/home/jwg/Projects/JWG-Minecraft-Launcher", "Choose File", true, new String[] {"jar", "md", "folder"});
+=======
+        fileChooser("/home/jwg/Projects", "Choose File");
+>>>>>>> parent of 2d8de82 (Fixed  part of the fileChooser.kt api, and made some tweaks)
     }
 }
