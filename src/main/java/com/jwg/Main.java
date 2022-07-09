@@ -20,8 +20,12 @@ public class Main {
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         fileChooser("/home/jwg/Projects/JWG-Minecraft-Launcher", "Choose File", true, new String[] {"jar", "md", "folder"});
+=======
+        fileChooser("/home/jwg/Projects", "Choose File");
+>>>>>>> parent of 2d8de82 (Fixed  part of the fileChooser.kt api, and made some tweaks)
 =======
         fileChooser("/home/jwg/Projects", "Choose File");
 >>>>>>> parent of 2d8de82 (Fixed  part of the fileChooser.kt api, and made some tweaks)

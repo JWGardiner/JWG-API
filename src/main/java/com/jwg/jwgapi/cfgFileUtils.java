@@ -1,5 +1,7 @@
 package com.jwg.jwgapi;
 
+import com.jwg.Main;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -20,7 +22,7 @@ public class cfgFileUtils {
                     writeFile.overwriteFile(file,wholefile);
                 }
             } catch (IOException e) {
-                errorHandler.handleError(e + " Fatal Error", "jwgapi", 001, "jwgapi.log");
+                errorHandler.handleError(e + " Fatal Error", "jwgapi", parseVersion.versionInt(Main.version), "jwgapi.log");
             }
         }
         ;
