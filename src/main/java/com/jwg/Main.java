@@ -6,13 +6,7 @@ The code on line 15, 16, 17 and 19 are important though for the logger.
 The version must be X.X.X and the project name must be lowercase.
  */
 
-
-import com.jwg.jwgapi.cfgFileUtils;
 import com.jwg.jwgapi.logger;
-import com.jwg.jwgapi.swingUtils;
-import com.jwg.jwgapi.sysinfo;
-
-import javax.swing.*;
 
 import static com.jwg.jwgapi.FileChooserKt.fileChooser;
 import static com.jwg.jwgapi.parseVersion.versionInt;
@@ -26,6 +20,6 @@ public class Main {
         logger.log(logFile, versionInt(version), project, 0, "Hello, World!");
         logger.log(logFile, versionInt(version), project, 0, "Test Line 2");
 
-        fileChooser("/home/jwg/Projects/JWG-Minecraft-Launcher", "Choose File", true);
+        fileChooser("/home/jwg/Projects/JWG-Minecraft-Launcher", "Choose File", true, new String[] {"jar", "md", "folder"});
     }
 }
