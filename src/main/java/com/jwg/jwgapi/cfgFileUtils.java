@@ -1,40 +1,37 @@
 package com.jwg.jwgapi;
 
-import com.jwg.Main;
-
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
+import static com.jwg.Main.logFile;
+import static com.jwg.jwgapi.writeFile.overwriteFile;
+
 public class cfgFileUtils {
-    public static void addCFG(String name, String file, String value) {
-        String wholefile;
-        try {
-             wholefile = readFile.fileRead(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        wholefile = wholefile + "\n"+name+"="+value;
-
-        File fileToDelete = new File(file);
-        if (fileToDelete.delete()) {
-            try {
-                if (fileToDelete.createNewFile()) {
-                    writeFile.overwriteFile(file,wholefile);
-                }
-            } catch (IOException e) {
-                errorHandler.handleError(e + " Fatal Error", "jwgapi", parseVersion.versionInt(Main.version), "jwgapi.log");
+    public static void createCfg(File file) throws IOException {
+            if (file.createNewFile()) {
+                logger.log(logFile, 1, "jwg-cfg", 0, "Created config file");
+            } else {
+                logger.log(logFile, 1, "jwg-cfg", 1, "Config file already exists");
             }
-        }
-        ;
     }
-    public static String readCFG(int line, String file) {
-        String fileLine;
-        try {
-            fileLine = readFile.fileReadLine(file, line);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public static void addCfg(File file, String entry, String value) throws IOException {
+        String fileData = "";
+        BufferedReader checkFileEmpty = new BufferedReader(new FileReader(file));
+        if (checkFileEmpty.readLine() == null) {
+            overwriteFile(String.valueOf(file), entry+" = "+value+"\n");
+        } else {
+            fileData = readFile.fileRead(String.valueOf(file));
         }
+        overwriteFile(String.valueOf(file), fileData+"\n"+entry+" = "+value+"\n");
+    }
+    public static void modifyCfg(File file, String entry, String newValue, String oldValue) throws IOException{
+        String fileData = readFile.fileRead(String.valueOf(file));
+        fileData = fileData.replaceFirst(entry + " = " + oldValue, entry + " = " + newValue);
+        overwriteFile(String.valueOf(file), fileData);
+    }
+    public static String readCfg(File file, String entry) throws IOException {
 
-        return fileLine.substring(fileLine.indexOf("=") + 1).trim();
     }
 }
