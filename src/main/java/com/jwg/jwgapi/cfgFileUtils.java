@@ -31,7 +31,18 @@ public class cfgFileUtils {
         fileData = fileData.replaceFirst(entry + " = " + oldValue, entry + " = " + newValue);
         overwriteFile(String.valueOf(file), fileData);
     }
-    public static String readCfg(File file, String entry) throws IOException {
+    public static String readCfg(File file, String entry, int cfgLine) throws IOException {
+        String line = "";
+        FileReader FileReader = new FileReader(file);
+        BufferedReader buffer = new BufferedReader(FileReader);
+
+        for (int i = 0; i < 50; i++) {
+            System.out.println(buffer.readLine());
+            if (i == cfgLine) {
+                line = buffer.readLine();
+                break;
+            }}
+        return line.substring(entry.length()+3);
+        }
 
     }
-}
